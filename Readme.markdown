@@ -15,6 +15,20 @@ Based on v27.3.5.
 
 ## Build & install
 
+### Get it prebuild from Github
+
+I use Github Actions to auto-build Iosevka Cadadrish. See the releases
+page for binary releases.
+
+*The build script YAML thingy is based on [@mjec’s setup][mjec]. Many
+thanks!*
+
+[mjec]: https://github.com/mjec/iosevka/blob/main/.github/workflows/release.yml
+
+### Manual build and installation
+
+**BEWARE**: Iosevka builds take about a million years on average!
+
 Clone with depth 1 because the repository is HUGE:
 
     $ git clone --depth 1 https://github.com/be5invis/Iosevka
@@ -26,7 +40,11 @@ Install a recent version of Node.js, probably using a binary release
 because they cut new major releases like a chef dices an onion.
 
 With my own config, it should suffice to extract the binary release to
-`~/local/node-...` and then run `$ . ~/.profile`.
+`~/local/node-...` and then run `$ . ~/.profile`. Otherwise, make sure
+to have the `bin/` folder in the `PATH` environment variable.
+
+There are other ways to acquire a recent enough Node.js, but for just
+this task, they are an overkill.
 
 Then, build:
 

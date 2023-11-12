@@ -41,9 +41,9 @@ lig-ltgteq = "slanted"
 
 [buildPlans.iosevka-cadadrish-sans-texture]
 family = "Iosevka Cadadrish Sans Textured"
-spacing = "quasi-proportional"
+spacing = "normal"
 serifs = "sans"
-no-cv-ss = false
+no-cv-ss = true
 no-ligation = true
 build-texture-feature = true
 

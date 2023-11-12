@@ -10,6 +10,8 @@ Based on v27.3.5.
 ## Variants
 
 - **Iosevka Cadadrish Sans**: non-serifed
+- **Iosevka Cadadrish Sans Textured**: non-serifed variant except with
+  the experimental texture control feature enabled
 
 ## Build & install
 
@@ -31,6 +33,7 @@ Then, build:
     $ sudo apt install ttfautohint
     $ npm install
     $ npm run build -- contents::iosevka-cadadrish-sans
+    $ npm run build -- contents::iosevka-cadadrish-sans-texture
     $ cp dist/**/*/*.ttf $HOME/.fonts
 
 If build is consuming too much memory, try with the environment

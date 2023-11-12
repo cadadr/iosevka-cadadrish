@@ -42,3 +42,20 @@ variable `NODE_OPTIONS="--max-old-space-size=4096"`.
 ## TODO
 
 - [ ] Perhaps add the Iosevka repo as a submodule?
+
+# Licence for this repo
+
+This project is licenced under the 3-Clause BSD Licence (a.k.a. the
+New BSD Licence).
+
+See [LICENCE](./LICENCE) for full text.
+
+# Licence info for Iosevka
+
+Copyright 2015-2021, Renzhi Li (aka. Belleve Invis, belleve@typeof.net)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+
+For more info, see https://github.com/be5invis/Iosevka/blob/master/LICENSE.md
+
+Original repository URL: https://github.com/be5invis/iosevka

@@ -1,0 +1,65 @@
+# Based on https://github.com/mjec/iosevka/blob/main/.github/workflows/release.yml
+
+name: Build & Release
+
+on:
+  push:
+    branches: [ "default" ]
+    paths: iosevka-cadadrish.toml
+  workflow_dispatch:
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+    - name: Install ttfautohint
+      run: |
+        sudo apt-get update
+        sudo apt-get install ttfautohint
+    - name: Checkout Iosevka
+      uses: actions/checkout@v3
+      with:
+        repository: be5invis/Iosevka
+        ref: v27.3.5
+        fetch-depth: 1
+        fetch-tags: false
+    - name: Checkout configuration
+      uses: actions/checkout@v3
+      with:
+        path: iosevka-cadadrish-config
+    - name: Place config in correct location
+      run: ln -s iosevka-cadadrish-config/iosevka-cadadrish.toml private-build-plans.toml
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Restore build cache
+      uses: actions/cache/restore@v3
+      id: cache-build-restore
+      with:
+        path: .build
+        key: ${{ runner.os }}-build
+    - name: Build the basic sans variant
+      run: npm run build -- ttf::iosevka-cadadrish-sans
+    - name: Build the sans variant with texture healing
+      run: npm run build -- ttf::iosevka-cadadrish-sans-texture
+    - name: Compress the release
+      run: zip -j -q release.zip dist/**/*/*.ttf
+    - name: Save build cache
+      uses: actions/cache/save@v3
+      id: cache-build-save
+      with:
+        path: .build
+        key: ${{ steps.cache-build-restore.outputs.cache-primary-key }}
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          release.zip

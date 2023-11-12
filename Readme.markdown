@@ -21,7 +21,6 @@ Or just:
 Then, build:
 
     $ npm install
-    $ npm run build -- contents::iosevka-cadadrish-slap
     $ npm run build -- contents::iosevka-cadadrish-sans
     $ cp dist/**/*/*.ttf $HOME/.fonts
 
